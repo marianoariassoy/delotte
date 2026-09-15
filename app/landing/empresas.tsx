@@ -2,7 +2,7 @@ export default function Empresas() {
   return (
     <div className="pt-4 pb-40 md:pb-70 w-full">
       <h2 className="text-sm mb-8">NUESTRAS EMPRESAS</h2>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 justify-center items-center max-w-7xl mx-auto">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 justify-center items-center max-w-7xl mx-auto">
         <img
           src="/images/Elementos-03.svg"
           alt="Grupo Delotte"
