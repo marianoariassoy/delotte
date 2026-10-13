@@ -6,7 +6,7 @@ import Certificaciones from "./certificaciones";
 
 export default function Home() {
   return (
-    <section className="flex flex-col gap-y-30">
+    <section className="flex flex-col gap-y-30 mt-30 px-4">
       <Hero />
       <Actividades />
       <Datos />

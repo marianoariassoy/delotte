@@ -22,8 +22,8 @@ const datos = () => {
 
   return (
     <div className="flex flex-col border-t border-black pt-8">
-      <h2 className="font-bold text-sm mb-20">NUESTROS DATOS</h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-x-20 gap-y-12 max-w-7xl">
+      <h2 className="font-bold mb-20">NUESTROS DATOS</h2>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-x-20 gap-y-12 max-w-7xl mx-auto">
         {data.map((item) => (
           <div key={item.title} className="flex flex-col gap-y-2">
             <div className="text-5xl md:text-7xl">

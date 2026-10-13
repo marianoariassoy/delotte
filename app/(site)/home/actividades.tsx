@@ -1,14 +1,16 @@
 import Image from "next/image";
+import Title from "@/components/title";
 
 const actividades = () => {
   return (
-    <div className="flex flex-col border-t border-black pt-8 md:px-4">
-      <h2 className="font-bold text-sm">NUESTRAS ACTIVIDADES</h2>
-      <h1 className="text-3xl md:text-6xl max-w-7xl mt-2 mb-12">
-        Producimos commodities, especialidades y cultivos característicos de las
-        regiones en las que estamos presentes.
-      </h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-7xl">
+    <div className="flex flex-col gap-y-20 border-t border-black pt-8">
+      <Title
+        title="NUESTRAS ACTIVIDADES"
+        subtitle="Producimos commodities, especialidades y cultivos característicos de las
+        regiones en las que estamos presentes."
+      />
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6  mx-auto">
         <div>
           <Image
             src="/images/landing-actividades-1.webp"

@@ -9,12 +9,17 @@ export const mainMenu: MenuItem[] = [
   { label: "Actividades", href: "/actividades" },
   {
     label: "Empresas",
-    href: "/empresas",
+    href: "",
     children: [
       { label: "Delotte", href: "/empresas/delotte" },
-      { label: "Empresa B", href: "/empresas/empresab" },
+      { label: "Productos Andinos", href: "/empresas/delotte" },
+      { label: "Alinoa", href: "/empresas/delotte" },
+      { label: "Frutucumán e Inducítrica", href: "/empresas/delotte" },
+      { label: "Agropecuaria El Sauce", href: "/empresas/delotte" },
+      { label: "Servicios y Negocios", href: "/empresas/delotte" },
+      { label: "Tenax", href: "/empresas/delotte" },
     ],
   },
-  { label: "Talentos", href: "/Talentos" },
+  { label: "Talentos", href: "/talentos" },
   { label: "Contactanos", href: "/contactanos" },
 ];

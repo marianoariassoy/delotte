@@ -1,3 +1,5 @@
+import Title from "@/components/title";
+
 const certificaciones = () => {
   const logos = [
     {
@@ -45,14 +47,13 @@ const certificaciones = () => {
   ];
 
   return (
-    <div className="flex flex-col border-t border-black pt-8 mb-40 md:mb-60">
-      <h2 className="font-bold text-sm">CERTIFICACIONES</h2>
-      <h1 className="text-3xl md:text-6xl max-w-7xl mt-2 mb-40">
-        Trabajamos bajo estándares internacionales que garantizan la calidad,
-        trazabilidad y sustentabilidad de nuestros procesos, productos y
-        servicios, facilitando su llegada a los principales mercados del mundo.
-      </h1>
-      <div className="w-full flex flex-wrap items-center justify-center gap-12 md:gap-20 max-w-5xl mx-auto">
+    <div className="flex flex-col gap-y-20 border-t border-black pt-8 mb-40 md:mb-60">
+      <Title
+        title="Certificaciones"
+        subtitle="Trabajamos bajo estándares internacionales que garantizan la calidad, trazabilidad y sustentabilidad de nuestros procesos, productos y servicios, facilitando su llegada a los principales mercados del mundo."
+      />
+
+      <div className="w-full flex flex-wrap items-center justify-center gap-12 md:gap-20 max-w-6xl mx-auto md:mt-20">
         {logos.map((logo) => (
           <img
             key={logo.title}

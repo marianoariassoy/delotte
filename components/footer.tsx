@@ -1,20 +1,20 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { mainMenu } from "@/config/navigation";
+import { usePathname } from "next/navigation";
+import { Logo } from "@/components/svgs";
 
 export default function Home() {
+  const pathname = usePathname();
+
   return (
     <footer className="px-4">
-      <div className="grid md:grid-cols-2 gap-4 text-sm border-t border-black pt-8 pb-20">
+      <div className="grid md:grid-cols-2 gap-4 border-t border-foreground pt-8 pb-20">
         <div>
-          <Link href="/">
-            <Image
-              src="/assets/logo.svg"
-              alt="Logo Grupo Delotte"
-              className="w-30 mb-4"
-              width={136}
-              height={136}
-            />
+          <Link href="/home" className="text-xl mb-4 block">
+            <Logo />
           </Link>
           <p>
             Dedicados a la producción
@@ -31,7 +31,7 @@ export default function Home() {
               <li key={item.label}>
                 <Link
                   href={item.href ? item.href : "#"}
-                  className="hover:underline"
+                  className={`${pathname === item.href ? "opacity-50" : "hover:opacity-50"}`}
                 >
                   {item.label}
                 </Link>
@@ -43,17 +43,17 @@ export default function Home() {
               <span className="font-bold text-base">Social</span>
             </li>
             <li>
-              <a href="#" className="hover:underline">
+              <a href="#" className="hover:opacity-50">
                 LinkedIn
               </a>
             </li>
             <li>
-              <a href="#" className="hover:underline">
+              <a href="#" className="hover:opacity-50">
                 Instagram
               </a>
             </li>
             <li>
-              <a href="#" className="hover:underline">
+              <a href="#" className="hover:opacity-50">
                 Youtube
               </a>
             </li>
@@ -72,7 +72,7 @@ export default function Home() {
             <li>
               <a
                 href="mailto:info@grupodelotte.com"
-                className="hover:underline"
+                className="hover:opacity-50"
               >
                 info@grupodelotte.com
               </a>

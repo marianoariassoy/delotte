@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="es">
-      <body className={`${satoshi.variable} antialiased`}>
+      <body className={`${satoshi.variable} antialiased `}>
         <main>{children}</main>
       </body>
     </html>
