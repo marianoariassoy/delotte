@@ -17,8 +17,6 @@ export default async function Page({ params }: PageProps) {
   const lang = (cookieStore.get("lang")?.value || "es") as "es" | "en";
   const data = await getDataBySlug("empresas", slug, lang);
 
-  console.log(data);
-
   return (
     <div className="flex flex-col gap-y-20 pb-20">
       <div className="flex items-center justify-center w-full h-screen">
