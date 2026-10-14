@@ -2,55 +2,65 @@ import Title from "@/components/title";
 import Columnas from "@/components/columnas";
 import Galeria from "./galeria";
 import Menu from "./menu";
+import { getDataBySlug } from "@/lib/api";
+import { cookies } from "next/headers";
 
-const page = () => {
+interface PageProps {
+  params: Promise<{
+    slug: string;
+  }>;
+}
+
+export default async function Page({ params }: PageProps) {
+  const { slug } = await params;
+  const cookieStore = await cookies();
+  const lang = (cookieStore.get("lang")?.value || "es") as "es" | "en";
+  const data = await getDataBySlug("empresas", slug, lang);
+
+  console.log(data);
+
   return (
     <div className="flex flex-col gap-y-20 pb-20">
       <div className="flex items-center justify-center w-full h-screen">
-        <div className="absolute z-10 w-50 h-50 bg-amber-400">Logo</div>
-        <video
-          className="h-full w-full object-cover object-center"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          poster="/assets/image.webp"
-        >
-          <source src="/videos/hero-web.mp4" type="video/mp4" />
-        </video>
+        <div className="absolute z-10">
+          {data.image && (
+            <img alt="Logo" className="w-40 md:w-60" src={data.image} />
+          )}
+        </div>
+
+        {data.video && (
+          <video
+            className="h-full w-full object-cover object-center"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+          >
+            <source src={data.video} type="video/mp4" />
+          </video>
+        )}
       </div>
 
       <div className="flex flex-col px-4 gap-y-20">
-        <Title
-          title="SERVICIOS Y NEGOCIOS"
-          subtitle="Somos una planta de acopio y acondicionamiento de granos
-          convencionales y orgánicos."
-        />
+        <Title title={data.title} subtitle={data.subtitle} />
 
         <Columnas
-          title="NUESTRAS ACTIVIDADES"
+          title={lang === "es" ? "QUÉ HACEMOS" : "WHAT WE DO"}
           textLeft=""
-          textRight="Brindando servicios para la producción del Grupo y de
-terceros.
-La incorporación permanente de infraestructura, tecnología
-y certificando los estándares de calidad nos permite
-acompañar las demandas de distintos mercados y fortalecer
-la trazabilidad de nuestras operaciones."
+          textRight={data.text}
         />
 
-        <Galeria />
+        <Galeria images={data.images} />
 
         <Columnas
-          title="NUESTRAS ACTIVIDADES"
+          title={lang === "es" ? "NUESTRAS ACTIVIDADES" : "OUR ACTIVITIES"}
           textLeft=""
-          textRight="Recibimos y acondicionamos soja, maíz, trigo y girasol."
+          textRight={data.text2}
         />
 
         <Menu />
       </div>
     </div>
   );
-};
-
-export default page;
+}

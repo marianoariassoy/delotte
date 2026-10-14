@@ -1,4 +1,17 @@
-export default function Empresas({ lang }: { lang: string }) {
+import { getData } from "@/lib/api";
+import Link from "next/link";
+
+type Data = {
+  id: number;
+  title: string;
+  slug: string;
+  logo: string;
+  logoEmpresas: string;
+};
+
+export default async function Empresas({ lang }: { lang: string }) {
+  const data = (await getData("empresas", lang)) as Data[];
+
   return (
     <div className="flex flex-col border-t border-black pt-8">
       <h2 className="font-bold mb-20">
@@ -13,37 +26,19 @@ export default function Empresas({ lang }: { lang: string }) {
           className="w-full h-full object-cover col-span-2 md:col-span-2 md:row-span-2"
         />
 
-        {/* Las 6 imágenes restantes se acomodarán automáticamente en el espacio restante */}
-        <img
-          src="/images/Elementos-04.svg"
-          alt="Delotte"
-          className="w-full h-full object-cover"
-        />
-        <img
-          src="/images/Elementos-05.svg"
-          alt="Servicios y Negocios"
-          className="w-full h-full object-cover"
-        />
-        <img
-          src="/images/Elementos-06.svg"
-          alt="Alinoa"
-          className="w-full h-full object-cover"
-        />
-        <img
-          src="/images/Elementos-07.svg"
-          alt="Tenax"
-          className="w-full h-full object-cover"
-        />
-        <img
-          src="/images/Elementos-08.svg"
-          alt="Agropecuaria El Sauce"
-          className="w-full h-full object-cover"
-        />
-        <img
-          src="/images/Elementos-09.svg"
-          alt="Productos Andinos"
-          className="w-full h-full object-cover"
-        />
+        {data.map((item) => (
+          <Link
+            key={item.id}
+            href={`/empresas/${item.slug}`}
+            className="hover:opacity-50 transition-all"
+          >
+            <img
+              src={item.logo}
+              alt={item.title}
+              className="w-full col-span-2 md:col-span-2 md:row-span-2"
+            />
+          </Link>
+        ))}
       </div>
     </div>
   );

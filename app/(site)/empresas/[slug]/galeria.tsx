@@ -1,22 +1,9 @@
-const Galeria = () => {
-  const images = [
-    {
-      id: 1,
-      image: "/images/mision.webp",
-      alt: "Galeria 1",
-    },
-    {
-      id: 2,
-      image: "/images/vision.webp",
-      alt: "Galeria 2",
-    },
-    {
-      id: 3,
-      image: "/images/proposito.webp",
-      alt: "Galeria 3",
-    },
-  ];
+type Data = {
+  id: number;
+  image: string;
+};
 
+const Galeria = ({ images }: { images: Data[] }) => {
   return (
     <div className="w-full max-w-7xl mx-auto">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

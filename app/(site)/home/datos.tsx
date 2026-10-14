@@ -41,11 +41,11 @@ const datos = ({ lang }: { lang: string }) => {
               />
               {item.number === 17 && "mil"}
             </div>
-            <p className="text-4xl md:text-6xl">
+            <p className="text-3xl md:text-6xl">
               {lang === "es" ? item.labelEs : item.labelEn}
             </p>
-            <div className="pl-10 mt-2">
-              <img src={item.icon} alt="icono" className="h-40" />
+            <div className="md:pl-10 mt-2">
+              <img src={item.icon} alt="icono" className="h-20 md:h-40" />
             </div>
           </div>
         ))}

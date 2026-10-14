@@ -1,4 +1,4 @@
-const API_URL = process.env.NEXT_PRIVATE_API_URL;
+const API_URL = process.env.API_URL;
 
 export async function getHomeData(lang: string) {
   const res = await fetch(`${API_URL}/textos/${lang}`, {
@@ -11,6 +11,13 @@ export async function getHomeData(lang: string) {
 
 export async function getData(url: string, lang: string) {
   const res = await fetch(`${API_URL}/${url}/${lang}`, {
+    cache: "no-store",
+  });
+  return res.json();
+}
+
+export async function getDataBySlug(url: string, slug: string, lang: string) {
+  const res = await fetch(`${API_URL}/${url}/${slug}/${lang}`, {
     cache: "no-store",
   });
   return res.json();

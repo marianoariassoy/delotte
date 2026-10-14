@@ -1,21 +1,44 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Menu from "./menu";
 import Lan from "./lan";
 import { Logo } from "@/components/svgs";
+import { usePathname } from "next/navigation";
 
 export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const toggleMenu = () => {
     setIsOpen((prev) => !prev);
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 p-4 pb-0 bg-background">
-      <div className="flex justify-between gap-4 items-center border-b border-foreground pb-4">
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 p-4 pb-0 ${isScrolled ? "bg-background" : "bg-transparent"}`}
+    >
+      <div
+        className={`flex justify-between gap-4 items-center border-foreground pb-4 ${pathname === "/actividades" ? "" : "border-b"}`}
+      >
         {/* Logo */}
         <div className="hover:pl-1 transition-all z-20">
           <Link href="/home" onClick={() => setIsOpen(false)}>
@@ -70,7 +93,7 @@ export default function Home() {
 
         {/* Desplegable Móvil */}
         <div
-          className={`fixed inset-x-0 top-16 bg-white border-b border-gray-200 p-6 flex flex-col gap-6 items-center transition-all duration-300 ease-in-out md:hidden -z-10 ${
+          className={`fixed inset-x-0 top-16 ${!isScrolled && pathname.includes("/empresas") ? "bg-transparent" : "bg-background"} p-4 flex flex-col gap-6 items-center transition-all duration-300 ease-in-out md:hidden -z-10 ${
             isOpen
               ? "translate-y-0 pointer-events-auto"
               : "translate-y-[-130%] pointer-events-none"
@@ -79,7 +102,7 @@ export default function Home() {
           <div onClick={() => setIsOpen(false)}>
             <Menu />
           </div>
-          <div className="pt-4 border-t border-gray-100 w-full flex justify-center">
+          <div className="pt-4 border-t border-foreground w-full flex justify-center">
             <Lan />
           </div>
         </div>
