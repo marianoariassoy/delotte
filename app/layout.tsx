@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { LanguageProvider } from "@/context/LanguageContext";
 
 const satoshi = localFont({
   src: "../fonts/Satoshi-Variable.ttf",
@@ -23,7 +24,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="es">
       <body className={`${satoshi.variable} antialiased `}>
-        <main>{children}</main>
+        <main>
+          <LanguageProvider>{children}</LanguageProvider>
+        </main>
       </body>
     </html>
   );

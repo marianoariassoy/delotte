@@ -1,25 +1,25 @@
+import { cookies } from "next/headers";
 import ProductosServicios from "./productosyservicios";
 import Columnas from "@/components/columnas";
+import { splitTextInHalf } from "@/lib/utils";
+import { getHomeData } from "@/lib/api";
 
-const page = () => {
+export default async function Actividades() {
+  const cookieStore = await cookies();
+  const lang = (cookieStore.get("lang")?.value || "es") as "es" | "en";
+  const data = await getHomeData(lang);
+
+  const [parte1, parte2] = splitTextInHalf(data[8].text);
+
   return (
     <div className="flex flex-col gap-y-20 mt-17 px-4">
       <Columnas
-        title="NUESTRAS ACTIVIDADES"
-        textLeft="Producimos y brindamos servicios para integrar la cadena de valor de
-          los alimentos. Cultivamos commodities, especialidades y productos
-          propios de nuestra región, de manera convencional, no GMO, y con
-          mirada regenerativa."
-        textRight="Integramos la cadena productiva con servicios de grower de maíz
-          semilla y multiplicación de soja semilla, riego, administración,
-          acondicionamiento de granos y legumbres, acopio de cereales y empaque
-          de cítricos, hasta la cosecha, comercialización y la exportación,
-          conectando nuestra producción con mercados de Europa, Asia y América."
+        title={lang === "es" ? "NUESTRAS ACTIVIDADES" : "OUR ACTIVITIES"}
+        textLeft={parte1}
+        textRight={parte2}
       />
 
-      <ProductosServicios />
+      <ProductosServicios lang={lang} />
     </div>
   );
-};
-
-export default page;
+}

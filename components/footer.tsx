@@ -1,13 +1,14 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { mainMenu } from "@/config/navigation";
 import { usePathname } from "next/navigation";
 import { Logo } from "@/components/svgs";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function Home() {
   const pathname = usePathname();
+  const { lang } = useLanguage();
 
   return (
     <footer className="px-4">
@@ -16,24 +17,34 @@ export default function Home() {
           <Link href="/home" className="text-xl mb-4 block">
             <Logo />
           </Link>
-          <p>
-            Dedicados a la producción
-            <br />
-            sustentable de alimentos.
-          </p>
+          {lang === "es" ? (
+            <p>
+              Dedicados a la producción
+              <br />
+              sustentable de alimentos.
+            </p>
+          ) : (
+            <p>
+              Dedicated to sustainable food production
+              <br />
+              sustainable food production
+            </p>
+          )}
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
           <ul>
             <li className="mb-2">
-              <span className="font-bold text-base">Explora</span>
+              <span className="font-bold text-base">
+                {lang === "es" ? "Explora" : "Explore"}
+              </span>
             </li>
             {mainMenu.map((item) => (
-              <li key={item.label}>
+              <li key={item.labelEs}>
                 <Link
                   href={item.href ? item.href : "#"}
                   className={`${pathname === item.href ? "opacity-50" : "hover:opacity-50"}`}
                 >
-                  {item.label}
+                  {lang === "es" ? item.labelEs : item.labelEn}
                 </Link>
               </li>
             ))}
@@ -60,7 +71,9 @@ export default function Home() {
           </ul>
           <ul>
             <li className="mb-2">
-              <span className="font-bold text-base">Contacto</span>
+              <span className="font-bold text-base">
+                {lang === "es" ? "Contacto" : "Contact"}
+              </span>
             </li>
             <li>
               <p>

@@ -1,13 +1,17 @@
 import Image from "next/image";
 import Title from "@/components/title";
 
-const actividades = () => {
+type Data = {
+  title: string;
+  text: string;
+}[];
+
+const actividades = ({ data, lang }: { data: Data; lang: string }) => {
   return (
     <div className="flex flex-col gap-y-20 border-t border-black pt-8">
       <Title
-        title="NUESTRAS ACTIVIDADES"
-        subtitle="Producimos commodities, especialidades y cultivos característicos de las
-        regiones en las que estamos presentes."
+        title={lang === "es" ? "NUESTRAS ACTIVIDADES" : "OUR ACTIVITIES"}
+        subtitle={data[1].text}
       />
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6  mx-auto">
@@ -21,15 +25,7 @@ const actividades = () => {
           />
         </div>
         <div>
-          <p className="text-xl md:text-3xl font-medium">
-            Trabajamos con sistemas de producción convencionales y no GMO,
-            incorporando una mirada regenerativa en el cuidado del suelo y en el
-            desarrollo de nuestros propios bioinsumos. Integramos la cadena de
-            valor a través de servicios que comprenden desde la producción,
-            acondicionamiento, acopio y empaque, hasta la administración,
-            comercialización y exportación. Así, conectamos nuestra producción
-            con los principales mercados de Europa, Asia y América.
-          </p>
+          <p className="text-xl md:text-3xl font-medium">{data[2].text}</p>
         </div>
         <div>
           <Image
@@ -41,10 +37,7 @@ const actividades = () => {
           />
         </div>
         <div>
-          <p className="text-3xl md:text-5xl font-medium">
-            La sostenibilidad, la integración vertical y la diversificación, son
-            pilares que orientan nuestra gestión y nuestro crecimiento.
-          </p>
+          <p className="text-3xl md:text-5xl font-medium">{data[3].text}</p>
         </div>
       </div>
     </div>

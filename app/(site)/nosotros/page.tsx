@@ -1,16 +1,29 @@
+import { cookies } from "next/headers";
 import Image from "next/image";
 import Columnas from "@/components/columnas";
 import MisionVision from "./misionvision";
 import Valores from "./valores";
 import Title from "@/components/title";
+import { splitTextInHalf } from "@/lib/utils";
+import { getHomeData } from "@/lib/api";
 
-const actividades = () => {
+export default async function Nosotros() {
+  const cookieStore = await cookies();
+  const lang = (cookieStore.get("lang")?.value || "es") as "es" | "en";
+  const data = await getHomeData(lang);
+
+  const [parte1, parte2] = splitTextInHalf(data[7].text);
+
   return (
     <div className="flex flex-col mt-30 px-4">
-      <Title
-        title="QUIENES SOMOS"
+      {/* <Title
+        title={lang === "es" ? "QUIENES SOMOS" : "WHO WE ARE"}
         subtitle="Somos un grupo empresario dedicado a la producción de alimentos y a la
         generación de soluciones innovadoras en el mercado."
+      /> */}
+      <Title
+        title={lang === "es" ? "QUIENES SOMOS" : "WHO WE ARE"}
+        subtitle={data[5].text}
       />
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6  mx-auto pb-20 mt-20">
@@ -24,39 +37,14 @@ const actividades = () => {
           />
         </div>
         <div>
-          <p className="text-xl md:text-3xl font-medium">
-            Producimos, procesamos y comercializamos de forma ingeniosa
-            alimentos para el mundo. Integramos producción, servicios y
-            comercialización a través de una estructura dinámica y flexible,
-            adaptada a las necesidades de nuestros clientes. La confianza, el
-            cumplimiento y la construcción de relaciones de largo plazo
-            acompañan la evolución y crecimiento de nuestras actividades,
-            impulsados por la innovación constante.
-          </p>
+          <p className="text-xl md:text-3xl font-medium">{data[6].text}</p>
         </div>
       </div>
 
       <Columnas
-        title="NUESTRA HISTORIA"
-        textLeft="Nuestra historia comienza en el año XXXX, somos herederos de la pasión
-          por la agricultura y de una visión marcada por el trabajo, el
-          crecimiento y el desarrollo de nuestro país.
-      
-          Nuestro origen se remonta a un agricultor y aviador, hijo de
-          inmigrantes italianos, que sobrevolando las tierras del norte
-          argentino quedó asombrado por las acequias de “La Invernada”. Ese
-          campo no solo fue el lugar donde comenzaron nuestras primeras
-          producciones en Tucumán, sino también el espacio donde distintas
-          generaciones familiares crecieron y desarrollaron sus vidas."
-        textRight="Desde entonces, cuatro generaciones acompañaron la evolución del Grupo
-          con un espíritu emprendedor impulsado por el afán de crecer y
-          diversificarse, adaptándose activamente a las tendencias del mercado.
-         
-          Ese impulso llevó al Grupo a ser pionero en nuevas formas de
-          producción, incorporando la innovación como parte de la esencia de
-          nuestra gente. Hoy producimos alimentos para el mundo, manteniendo un
-          compromiso sostenido con el crecimiento, la innovación, y nuestra
-          gente."
+        title={lang === "es" ? "NUESTRA HISTORIA" : "OUR HISTORY"}
+        textLeft={parte1}
+        textRight={parte2}
       />
 
       <img
@@ -65,11 +53,9 @@ const actividades = () => {
         className="w-full aspect-square md:aspect-auto object-center object-cover mt-20"
       />
 
-      <MisionVision />
+      <MisionVision lang={lang} />
 
-      <Valores />
+      <Valores lang={lang} />
     </div>
   );
-};
-
-export default actividades;
+}

@@ -4,11 +4,13 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { mainMenu } from "@/config/navigation";
 import { usePathname } from "next/navigation";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function Navigation() {
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const navRef = useRef<HTMLElement>(null);
   const pathname = usePathname();
+  const { lang } = useLanguage();
 
   useEffect(() => {
     function handleClickOutside(event: PointerEvent) {
@@ -35,11 +37,8 @@ export default function Navigation() {
   return (
     <nav ref={navRef} className="font-medium">
       <ul className="flex flex-col md:flex-row items-center gap-x-16 gap-y-4">
-        {mainMenu.map((item) => (
-          <li
-            key={item.label}
-            className="relative flex flex-col justify-center"
-          >
+        {mainMenu.map((item, index) => (
+          <li key={index} className="relative flex flex-col justify-center">
             {item.children ? (
               <>
                 <button
@@ -47,34 +46,36 @@ export default function Navigation() {
                   onClick={(e) => {
                     // Evita que el click suba a elementos padres y dispare otros cierres
                     e.stopPropagation();
-                    setOpenMenu(openMenu === item.label ? null : item.label);
+                    setOpenMenu(
+                      openMenu === item.labelEs ? null : item.labelEs,
+                    );
                   }}
-                  aria-expanded={openMenu === item.label}
+                  aria-expanded={openMenu === item.labelEs}
                   className="cursor-pointer hover:opacity-50 focus:outline-none text-center z-20"
                 >
-                  {item.label}
+                  {lang === "es" ? item.labelEs : item.labelEn}
                 </button>
 
                 {/* Submenú Desktop */}
                 <div
                   className={`absolute w-90 left-0 top-full z-10 mt-8 transition-all grid-cols-2 gap-x-20 hidden md:grid ${
-                    openMenu === item.label
+                    openMenu === item.labelEs
                       ? "translate-y-0"
                       : "translate-y-[-200%]"
                   }`}
                 >
                   {item.children.map((child) => (
-                    <div key={child.label}>
+                    <div key={child.labelEs}>
                       {child.href && (
                         <Link
                           href={child.href}
-                          className="whitespace-nowrap text-black hover:text-black/50"
+                          className="whitespace-nowrap hover:opacity-50"
                           onClick={(e) => {
                             e.stopPropagation();
                             setOpenMenu(null);
                           }}
                         >
-                          {child.label}
+                          {lang === "es" ? child.labelEs : child.labelEn}
                         </Link>
                       )}
                     </div>
@@ -82,33 +83,33 @@ export default function Navigation() {
                 </div>
 
                 <div
-                  className={`fixed w-full left-0 top-0 h-50 px-4 bg-white transition-all hidden md:block ${
-                    openMenu === item.label
+                  className={`fixed w-full left-0 top-0 h-50 px-4 bg-background transition-all hidden md:block ${
+                    openMenu === item.labelEs
                       ? "translate-y-0"
                       : "-translate-y-full"
                   }`}
                 >
-                  <div className="border-b border-black w-full h-full"></div>
+                  <div className="border-b border-foreground w-full h-full"></div>
                 </div>
 
                 {/* Submenú Móvil */}
-                {openMenu === item.label && (
+                {openMenu === item.labelEs && (
                   <div
                     className="flex flex-col pt-2 md:hidden text-center items-center justify-center"
                     onClick={(e) => e.stopPropagation()} // Evita que clics dentro del submenú burbujeen
                   >
                     {item.children.map((child) => (
-                      <div key={child.label}>
+                      <div key={child.labelEs}>
                         {child.href && (
                           <Link
                             href={child.href}
-                            className="whitespace-nowrap text-black hover:text-black/50"
+                            className="whitespace-nowrap hover:opacity-50"
                             onClick={(e) => {
                               e.stopPropagation();
                               setOpenMenu(null);
                             }}
                           >
-                            {child.label}
+                            {lang === "es" ? child.labelEs : child.labelEn}
                           </Link>
                         )}
                       </div>
@@ -123,11 +124,11 @@ export default function Navigation() {
                     pathname === item.href ? "opacity-50" : "hover:opacity-50"
                   }`}
                   href={item.href}
-                  onClick={(e) => {
+                  onClick={() => {
                     setOpenMenu(null);
                   }}
                 >
-                  {item.label}
+                  {lang === "es" ? item.labelEs : item.labelEn}
                 </Link>
               )
             )}

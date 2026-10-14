@@ -1,70 +1,42 @@
 import Title from "@/components/title";
+import { getData } from "@/lib/api";
 
-const certificaciones = () => {
-  const logos = [
-    {
-      title: "Orgánico Argentina",
-      image: "/logos/organico.jpg",
-    },
-    {
-      title: "Logo 2",
-      image: "/logos/logo2.jpg",
-    },
-    {
-      title: "USDA Organic",
-      image: "/logos/usda.png",
-    },
-    {
-      title: "Global G.A.P.",
-      image: "/logos/global.png",
-    },
-    {
-      title: "HACCP",
-      image: "/logos/Haccp.jpg",
-    },
-    {
-      title: "JAS",
-      image: "/logos/jas.png",
-    },
-    {
-      title: "Kosher",
-      image: "/logos/kosher.png",
-    },
+type Text = {
+  title: string;
+  text: string;
+};
 
-    {
-      title: "Orgánico Brasil",
-      image: "/logos/organico-brasil.jpg",
-    },
+type Certificaciones = {
+  id: number;
+  image: string;
+};
 
-    {
-      title: "Primus GFS",
-      image: "/logos/primus.png",
-    },
-    {
-      title: "Sedex",
-      image: "/logos/sedex.jpg",
-    },
-  ];
+export default async function Certificaciones({
+  text,
+  lang,
+}: {
+  text: Text;
+  lang: string;
+}) {
+  const data = (await getData("certificaciones", lang)) as Certificaciones[];
 
   return (
     <div className="flex flex-col gap-y-20 border-t border-black pt-8 mb-40 md:mb-60">
       <Title
-        title="Certificaciones"
-        subtitle="Trabajamos bajo estándares internacionales que garantizan la calidad, trazabilidad y sustentabilidad de nuestros procesos, productos y servicios, facilitando su llegada a los principales mercados del mundo."
+        title={lang === "es" ? "Certificaciones" : "Certifications"}
+        subtitle={text.text}
       />
 
       <div className="w-full flex flex-wrap items-center justify-center gap-12 md:gap-20 max-w-6xl mx-auto md:mt-20">
-        {logos.map((logo) => (
+        {data.map((logo) => (
           <img
-            key={logo.title}
+            key={logo.id}
             src={logo.image}
             alt="logo"
-            className="max-h-16 md:max-h-24 max-w-24 md:max-w-35 object-contain"
+            className="max-h-16 md:max-h-24 max-w-24 md:max-w-35 object-contain hover:scale-103 transition-all cursor-pointer"
           />
         ))}
       </div>
     </div>
   );
-};
-
-export default certificaciones;
+}

@@ -1,37 +1,24 @@
-"use client";
-
-import { useEffect } from "react";
+import { cookies } from "next/headers";
 import Title from "@/components/title";
 import Inscripciones from "./inscripciones";
+import ChangeColors from "@/components/changeColors";
+import { getHomeData } from "@/lib/api";
 
-const Pager = () => {
-  useEffect(() => {
-    const customBackground = "#3d573c"; // Ejemplo: un fondo oscuro
-    const customForeground = "#e6e3de"; // Ejemplo: texto claro
-
-    const root = document.documentElement;
-
-    root.style.setProperty("--background", customBackground);
-    root.style.setProperty("--foreground", customForeground);
-
-    return () => {
-      root.style.removeProperty("--background");
-      root.style.removeProperty("--foreground");
-    };
-  }, []);
+export default async function Talentos() {
+  const cookieStore = await cookies();
+  const lang = (cookieStore.get("lang")?.value || "es") as "es" | "en";
+  const data = await getHomeData(lang);
 
   return (
     <div className="flex flex-col gap-y-20 mt-30 px-4 min-h-screen bg-background text-foreground">
+      <ChangeColors />
+
       <Title
-        title="TRABAJÁ CON NOSOTROS"
-        subtitle="Creemos en las personas y en la potencia del trabajo
-en equipo para alcanzar los mejores resultados.
-Conocé nuestras búsquedas y sumate al equipo."
+        title={lang === "es" ? "TRABAJÁ CON NOSOTROS" : "WORK WITH US"}
+        subtitle={data[9].text}
       />
 
-      <Inscripciones />
+      <Inscripciones lang={lang} />
     </div>
   );
-};
-
-export default Pager;
+}

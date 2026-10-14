@@ -1,15 +1,14 @@
 import Title from "@/components/title";
 
-const hero = () => {
+type Data = {
+  title: string;
+  text: string;
+};
+
+const hero = ({ data }: { data: Data }) => {
   return (
     <div className="flex flex-col gap-y-20">
-      <Title
-        title=""
-        subtitle="Producimos, procesamos y comercializamos de forma ingeniosa alimentos
-        para el mundo. Integramos producción, servicios y comercialización a
-        través de una estructura dinámica y flexible, adaptada a las necesidades
-        de nuestros clientes."
-      />
+      <Title title="" subtitle={data.text} />
       <video
         className="w-full aspect-square md:aspect-video object-cover"
         autoPlay

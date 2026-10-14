@@ -1,7 +1,9 @@
-export default function Empresas() {
+export default function Empresas({ lang }: { lang: string }) {
   return (
     <div className="flex flex-col border-t border-black pt-8">
-      <h2 className="font-bold mb-20">NUESTRAS EMPRESAS</h2>
+      <h2 className="font-bold mb-20">
+        {lang === "es" ? "NUESTRAS EMPRESAS" : "OUR COMPANIES"}
+      </h2>
       <div className="w-full grid grid-cols-2 md:grid-cols-5 gap-2 md:gap-4 max-w-6xl mx-auto items-stretch">
         {/* Imagen principal (Grupo Delotte) - Ocupa 2 columnas y 2 filas en pantallas medianas en adelante */}
 
