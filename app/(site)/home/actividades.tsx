@@ -17,7 +17,7 @@ const actividades = ({ data, lang }: { data: Data; lang: string }) => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6  mx-auto">
         <div>
           <Image
-            src="/images/landing-actividades-1.webp"
+            src="/assets/landing-actividades-1.webp"
             alt="Actividad 1"
             className="aspect-square md:aspect-4/5 object-center object-cover w-full h-full"
             width={1920}
@@ -29,7 +29,7 @@ const actividades = ({ data, lang }: { data: Data; lang: string }) => {
         </div>
         <div>
           <Image
-            src="/images/landing-actividades-2.webp"
+            src="/assets/landing-actividades-2.webp"
             alt="Actividad 2"
             className="aspect-square md:aspect-4/5 object-center object-cover w-full h-full"
             width={1920}

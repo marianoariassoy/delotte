@@ -16,6 +16,7 @@ const hero = ({ data }: { data: Data }) => {
         loop
         playsInline
         preload="metadata"
+        poster="/assets/no-video.avif"
       >
         <source src="/videos/landing-hero-web.mp4" type="video/mp4" />
       </video>

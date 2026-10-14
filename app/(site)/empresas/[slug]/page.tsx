@@ -36,6 +36,7 @@ export default async function Page({ params }: PageProps) {
             loop
             playsInline
             preload="metadata"
+            poster="/assets/no-video.avif"
           >
             <source src={data.video} type="video/mp4" />
           </video>

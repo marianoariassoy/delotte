@@ -27,7 +27,7 @@ const Lista = ({
           <h3 className="font-bold">
             {lang === "es" ? "PRODUCTOS" : "PRODUCTS"}
           </h3>
-          <ul className="flex flex-col gap-2">
+          <ul className="flex flex-col gap-4">
             {productos.map((item) => {
               const isActive = activeTitle === item.title;
               return (
@@ -37,24 +37,18 @@ const Lista = ({
                     setActiveImage(item.image);
                     setActiveTitle(item.title);
                   }}
-                  className={`-translate-x-2 group flex items-center gap-2 cursor-pointer transition-all ${
+                  className={` group flex items-center gap-2 cursor-pointer transition-all ${
                     isActive ? "  " : "text-gray-400 hover:text-black"
                   }`}
                 >
                   {/* Icono SVG de flecha abierta */}
-                  <svg
-                    className="w-8 h-8 md:w-10 md:h-10 shrink-0 transition-transform duration-300 group-hover:translate-x-1 "
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
+                  <img
+                    src="/assets/arrow2.svg"
+                    alt="Arrow"
+                    width={22}
+                    className="opacity-30 mt-4"
+                  />
+
                   <span className="text-2xl md:text-6xl lg:text-5xl tracking-tight">
                     {item.title}
                   </span>
@@ -69,7 +63,7 @@ const Lista = ({
           <h3 className="font-bold text-xs">
             {lang === "es" ? "SERVICIOS" : "SERVICES"}
           </h3>
-          <ul className="flex flex-col gap-2">
+          <ul className="flex flex-col gap-4">
             {servicios.map((item) => {
               const isActive = activeTitle === item.title;
               return (
@@ -79,24 +73,17 @@ const Lista = ({
                     setActiveImage(item.image);
                     setActiveTitle(item.title);
                   }}
-                  className={`-translate-x-2 group flex items-center gap-2 cursor-pointer transition-all ${
+                  className={` group flex items-center gap-2 cursor-pointer transition-all ${
                     isActive ? "" : "text-gray-400 hover:text-black"
                   }`}
                 >
                   {/* Icono SVG de flecha abierta */}
-                  <svg
-                    className="w-8 h-8 md:w-10 md:h-10 shrink-0 transition-transform duration-300 group-hover:translate-x-1 "
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
+                  <img
+                    src="/assets/arrow2.svg"
+                    alt="Arrow"
+                    width={22}
+                    className="opacity-30 mt-4"
+                  />
                   <span className="text-2xl md:text-5xl leading-none">
                     {item.title}
                   </span>
