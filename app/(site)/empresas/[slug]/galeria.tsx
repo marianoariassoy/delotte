@@ -1,6 +1,7 @@
 type Data = {
   id: number;
   image: string;
+  title: string;
 };
 
 const Galeria = ({ images }: { images: Data[] }) => {
@@ -19,7 +20,7 @@ const Galeria = ({ images }: { images: Data[] }) => {
             >
               <img
                 src={item.image}
-                alt={item.alt}
+                alt=""
                 className="w-full h-full object-cover object-center"
               />
             </div>

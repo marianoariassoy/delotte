@@ -59,7 +59,7 @@ export default async function Page({ params }: PageProps) {
           textRight={data.text2}
         />
 
-        <Menu />
+        <Menu lang={lang} />
       </div>
     </div>
   );
