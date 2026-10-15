@@ -15,7 +15,9 @@ const Galeria = ({ images }: { images: Data[] }) => {
             <div
               key={item.id}
               className={`overflow-hidden ${
-                isPatternStart ? "md:col-span-2 aspect-video" : "aspect-4/5"
+                isPatternStart
+                  ? "md:col-span-2 aspect-4/5 md:aspect-video"
+                  : "aspect-4/5"
               }`}
             >
               <img

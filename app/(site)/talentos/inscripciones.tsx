@@ -17,10 +17,11 @@ export default async function Aplicaciones({ lang }: { lang: string }) {
       <div className="py-12 md:px-4 border-t md:border-0 border-foreground md:pb-60 flex flex-col items-start justify-start gap-y-8">
         {data.map((item, index) => (
           <button
-            className="text-2xl md:text-5xl font-medium hover:opacity-50 transition-all cursor-pointer"
+            className="text-2xl md:text-5xl font-medium hover:opacity-50 transition-all cursor-pointer flex justify-between items-center w-full"
             key={index}
           >
-            {item.title}
+            <span> {item.title}</span>
+            <span> - </span>
           </button>
         ))}
       </div>
