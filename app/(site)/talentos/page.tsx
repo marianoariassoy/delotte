@@ -11,7 +11,7 @@ export default async function Talentos() {
 
   return (
     <div className="flex flex-col gap-y-20 mt-30 px-4 min-h-screen bg-background text-foreground">
-      <ChangeColors />
+      <ChangeColors page="talentos" />
 
       <Title
         title={lang === "es" ? "TRABAJÁ CON NOSOTROS" : "WORK WITH US"}

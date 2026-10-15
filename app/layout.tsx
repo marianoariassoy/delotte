@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { LanguageProvider } from "@/context/LanguageContext";
+import { cookies } from "next/headers";
+import Header from "@/components/header";
+import Footer from "@/components/footer";
 
 const satoshi = localFont({
   src: "../fonts/Satoshi-Variable.ttf",
@@ -20,12 +23,19 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default async function RootLayout({ children }: LayoutProps<"/">) {
+  const cookieStore = await cookies();
+  const initialLang = (cookieStore.get("lang")?.value as "es" | "en") || "es";
+
   return (
-    <html lang="es">
+    <html lang={initialLang}>
       <body className={`${satoshi.variable} antialiased `}>
         <main>
-          <LanguageProvider>{children}</LanguageProvider>
+          <LanguageProvider initialLang={initialLang}>
+            <Header />
+            {children}
+            <Footer />
+          </LanguageProvider>
         </main>
       </body>
     </html>

@@ -18,9 +18,11 @@ export default function EmpresasNav({ data }: { data: Data[] }) {
 
   return (
     <div className="w-full flex flex-wrap items-center justify-center gap-12 md:gap-20 max-w-5xl mx-auto mt-12 md:mt-20">
-      <div className="text-[1.1rem] md:text-[1.4rem]">
-        <Logo />
-      </div>
+      <Link href="/nosotros">
+        <div className="text-[1.1rem] md:text-[1.4rem] transition-all opacity-80 hover:text-[#9CB5F4] hover:opacity-100">
+          <Logo />
+        </div>
+      </Link>
 
       {data.map((logo) => {
         // Comparamos si la ruta actual incluye el slug de la empresa
@@ -41,15 +43,6 @@ export default function EmpresasNav({ data }: { data: Data[] }) {
                   : "saturate-0 brightness-0 opacity-80 hover:saturate-100 hover:brightness-100 hover:opacity-100" // Estilo normal con hover
               }`}
             />
-            {isActive && (
-              <span className="absolute left-1/2">
-                <img
-                  src="/assets/arrow2.svg"
-                  alt="Arrow"
-                  className="w-5 md:w-8"
-                />
-              </span>
-            )}
           </Link>
         );
       })}

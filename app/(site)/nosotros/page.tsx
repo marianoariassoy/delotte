@@ -1,10 +1,10 @@
 import { cookies } from "next/headers";
 import Image from "next/image";
-import Columnas from "@/components/columnas";
+// import Columnas from "@/components/columnas";
 import MisionVision from "./misionvision";
 import Valores from "./valores";
 import Title from "@/components/title";
-import { splitTextInHalf } from "@/lib/utils";
+// import { splitTextInHalf } from "@/lib/utils";
 import { getHomeData } from "@/lib/api";
 
 export default async function Nosotros() {
@@ -12,15 +12,10 @@ export default async function Nosotros() {
   const lang = (cookieStore.get("lang")?.value || "es") as "es" | "en";
   const data = await getHomeData(lang);
 
-  const [parte1, parte2] = splitTextInHalf(data[7].text);
+  // const [parte1, parte2] = splitTextInHalf(data[7].text);
 
   return (
-    <div className="flex flex-col mt-30 px-4">
-      {/* <Title
-        title={lang === "es" ? "QUIENES SOMOS" : "WHO WE ARE"}
-        subtitle="Somos un grupo empresario dedicado a la producción de alimentos y a la
-        generación de soluciones innovadoras en el mercado."
-      /> */}
+    <div className="flex flex-col mt-30 px-4 scroll-m-30">
       <Title
         title={lang === "es" ? "QUIENES SOMOS" : "WHO WE ARE"}
         subtitle={data[5].text}
@@ -41,16 +36,16 @@ export default async function Nosotros() {
         </div>
       </div>
 
-      <Columnas
+      {/* <Columnas
         title={lang === "es" ? "NUESTRA HISTORIA" : "OUR HISTORY"}
         textLeft={parte1}
         textRight={parte2}
-      />
+      /> */}
 
       <img
         src="/assets/quienes_somos-2.webp"
         alt="Quienes somos 2"
-        className="w-full aspect-square md:aspect-auto object-center object-cover mt-20"
+        className="w-full aspect-square md:aspect-auto object-center object-cover"
       />
 
       <MisionVision lang={lang} />

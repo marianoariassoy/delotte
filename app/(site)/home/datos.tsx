@@ -7,19 +7,16 @@ const datos = ({ lang }: { lang: string }) => {
       number: 50,
       labelEs: "Años de experiencia",
       labelEn: "Years of Experience",
-      icon: "/assets/icon1.svg",
     },
     {
       number: 17,
       labelEs: "Hectáreas productivas",
       labelEn: "Productive Areas",
-      icon: "/assets/icon2.svg",
     },
     {
       number: 1000,
       labelEs: "Colaboradores en temporada",
       labelEn: "Contributors in Season",
-      icon: "/assets/icon3.svg",
     },
   ];
 
@@ -44,9 +41,6 @@ const datos = ({ lang }: { lang: string }) => {
             <p className="text-3xl md:text-6xl">
               {lang === "es" ? item.labelEs : item.labelEn}
             </p>
-            <div className="md:pl-10 mt-2">
-              <img src={item.icon} alt="icono" className="h-20 md:h-40" />
-            </div>
           </div>
         ))}
       </div>

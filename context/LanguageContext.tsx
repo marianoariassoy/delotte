@@ -13,8 +13,20 @@ const LanguageContext = createContext<LanguageContextType | undefined>(
   undefined,
 );
 
-export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [lang, setLang] = useState<Language>("es");
+export function LanguageProvider({
+  children,
+  initialLang,
+}: {
+  children: ReactNode;
+  initialLang: Language;
+}) {
+  const [lang, setLangState] = useState<Language>(initialLang);
+
+  const setLang = (newLang: Language) => {
+    setLangState(newLang);
+    // Guardamos la cookie en el cliente para las próximas peticiones
+    document.cookie = `lang=${newLang}; path=/; max-age=31536000`;
+  };
 
   return (
     <LanguageContext.Provider value={{ lang, setLang }}>

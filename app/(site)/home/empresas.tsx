@@ -19,11 +19,23 @@ export default async function Empresas({ lang }: { lang: string }) {
       </h2>
       <div className="w-full grid grid-cols-2 md:grid-cols-5 gap-2 md:gap-4 max-w-6xl mx-auto items-stretch">
         {/* Imagen principal estática */}
-        <img
-          src="/assets/home-icon1.svg"
-          alt="Grupo Delotte"
-          className="w-full h-full object-cover col-span-2 md:col-span-2 md:row-span-2"
-        />
+        <Link
+          href="/nosotros"
+          className="w-full h-full object-cover col-span-2 md:col-span-2 md:row-span-2 relative block group"
+        >
+          {/* Imagen por defecto (se oculta al hacer hover en el Link) */}
+          <img
+            src="/assets/home-icon1.svg"
+            alt="Grupo Delotte"
+            className="w-full h-full object-contain  group-hover:opacity-0"
+          />
+          {/* Imagen de hover (aparece al hacer hover en el Link) */}
+          <img
+            src="/assets/home-icon1On.svg"
+            alt="Grupo Delotte"
+            className="w-full h-full object-contain absolute inset-0 opacity-0  group-hover:opacity-100"
+          />
+        </Link>
 
         {data.map((item) => (
           <Link

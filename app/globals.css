@@ -23,3 +23,7 @@ body {
   background: var(--background-talentos);
   color: var(--foreground-talentos);
 }
+
+html {
+  scroll-behavior: smooth;
+}

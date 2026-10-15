@@ -54,6 +54,6 @@ export const mainMenu: MenuItem[] = [
   {
     labelEs: "Contactanos",
     labelEn: "Contact Us",
-    href: "#",
+    href: "/contactanos",
   },
 ];

@@ -4,6 +4,7 @@ import Galeria from "./galeria";
 import Menu from "./menu";
 import { getDataBySlug } from "@/lib/api";
 import { cookies } from "next/headers";
+import Data from "./data";
 
 interface PageProps {
   params: Promise<{
@@ -50,13 +51,9 @@ export default async function Page({ params }: PageProps) {
           textRight={data.text}
         />
 
-        <Galeria images={data.images} />
+        {data.data.length > 0 && <Data data={data.data} lang={lang} />}
 
-        <Columnas
-          title={lang === "es" ? "NUESTRAS ACTIVIDADES" : "OUR ACTIVITIES"}
-          textLeft=""
-          textRight={data.text2}
-        />
+        <Galeria images={data.images} />
 
         <Menu lang={lang} />
       </div>

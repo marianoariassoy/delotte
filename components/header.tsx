@@ -9,39 +9,74 @@ import { usePathname } from "next/navigation";
 
 export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 0) {
-        setIsScrolled(true);
+      const scrollY = window.scrollY;
+      const viewportHeight = window.innerHeight - 100;
+
+      // Si estamos en la raíz ("/"), solo aparece al superar el 100% del alto (viewportHeight)
+      if (pathname === "/") {
+        if (scrollY >= viewportHeight) {
+          setIsVisible(true);
+          setIsScrolled(true);
+        } else {
+          setIsVisible(false);
+          setIsScrolled(false);
+        }
       } else {
-        setIsScrolled(false);
+        // En cualquier otra página, aparece de inmediato al hacer scroll (o siempre visible)
+        setIsVisible(true);
+        setIsScrolled(scrollY > 0);
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    // Ejecutamos al montar para evaluar la posición inicial
+    handleScroll();
 
+    window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [pathname]);
 
   const toggleMenu = () => {
     setIsOpen((prev) => !prev);
   };
 
+  const scrollToTop = (e?: React.MouseEvent) => {
+    if (e) e.preventDefault();
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 p-4 pb-0 ${isScrolled ? "bg-background" : "bg-transparent"}`}
+      className={`fixed top-0 left-0 right-0 z-50 p-4 pb-0 transition-all 
+        ${pathname.includes("/empresas") ? (isScrolled ? "bg-background" : "bg-transparent") : "bg-background"}
+        ${
+          pathname === "/" && !isVisible
+            ? "pointer-events-none translate-y-[-300%]"
+            : "pointer-events-auto translate-y-0"
+        }`}
     >
       <div
-        className={`flex justify-between gap-4 items-center border-foreground pb-4 ${pathname === "/actividades" ? "" : "border-b"}`}
+        className={`flex justify-between gap-4 items-center border-foreground pb-4 border-b`}
       >
-        {/* Logo */}
         <div className="hover:pl-1 transition-all z-20">
-          <Link href="/home" onClick={() => setIsOpen(false)}>
+          <Link
+            href="/"
+            onClick={(e) => {
+              if (pathname === "/") {
+                scrollToTop(e);
+              }
+            }}
+          >
             <Logo />
           </Link>
         </div>
@@ -93,7 +128,11 @@ export default function Home() {
 
         {/* Desplegable Móvil */}
         <div
-          className={`fixed inset-x-0 top-16 ${!isScrolled && pathname.includes("/empresas") ? "bg-transparent" : "bg-background"} p-4 flex flex-col gap-6 items-center transition-all duration-300 ease-in-out md:hidden -z-10 ${
+          className={`fixed inset-x-0 top-16 ${
+            !isScrolled && pathname.includes("/empresas")
+              ? "bg-transparent"
+              : "bg-background"
+          } p-4 flex flex-col gap-6 items-center transition-all duration-300 ease-in-out md:hidden -z-10 ${
             isOpen
               ? "translate-y-0 pointer-events-auto"
               : "translate-y-[-130%] pointer-events-none"

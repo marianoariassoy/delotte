@@ -12,7 +12,10 @@ export default async function Home() {
   const data = await getHomeData(lang);
 
   return (
-    <section className="flex flex-col gap-y-30 mt-30 px-4">
+    <section
+      className="flex flex-col gap-y-30 px-4 mt-20 scroll-m-30"
+      id="home"
+    >
       <Hero data={data[0]} />
       <Actividades data={data} lang={lang} />
       <Datos lang={lang} />
