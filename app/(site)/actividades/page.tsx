@@ -12,7 +12,7 @@ export default async function Actividades() {
   const [parte1, parte2] = splitTextInHalf(data[8].text);
 
   return (
-    <div className="flex flex-col gap-y-20 mt-17 px-4">
+    <div className="flex flex-col gap-y-20 mt-17 px-4 scroll-m-30">
       <Columnas
         title={lang === "es" ? "NUESTRAS ACTIVIDADES" : "OUR ACTIVITIES"}
         textLeft={parte1}

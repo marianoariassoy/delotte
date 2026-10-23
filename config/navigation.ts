@@ -46,11 +46,11 @@ export const mainMenu: MenuItem[] = [
       { labelEs: "Tenax", labelEn: "Tenax", href: "/empresas/delotte" },
     ],
   },
-  // {
-  //   labelEs: "Talentos",
-  //   labelEn: "Talents",
-  //   href: "/talentos",
-  // },
+  {
+    labelEs: "Talentos",
+    labelEn: "Talents",
+    href: "/talentos",
+  },
   {
     labelEs: "Contactanos",
     labelEn: "Contact Us",
