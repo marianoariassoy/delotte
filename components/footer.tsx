@@ -18,17 +18,9 @@ export default function Home() {
             <Logo />
           </Link>
           {lang === "es" ? (
-            <p>
-              Dedicados a la producción
-              <br />
-              sustentable de alimentos.
-            </p>
+            <p>Producimos alimentos para el mundo.</p>
           ) : (
-            <p>
-              Dedicated to sustainable food production
-              <br />
-              sustainable food production
-            </p>
+            <p>We produce food for the world.</p>
           )}
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
@@ -54,18 +46,13 @@ export default function Home() {
               <span className="font-bold text-base">Social</span>
             </li>
             <li>
-              <a href="#" className="hover:opacity-50">
+              <a
+                href="https://www.linkedin.com/company/grupodelotte/?viewAsMember=true"
+                target="_blank"
+                rel="noreferrer"
+                className="hover:opacity-50"
+              >
                 LinkedIn
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:opacity-50">
-                Instagram
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:opacity-50">
-                Youtube
               </a>
             </li>
           </ul>

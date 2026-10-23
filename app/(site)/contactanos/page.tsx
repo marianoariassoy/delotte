@@ -1,5 +1,4 @@
 import { cookies } from "next/headers";
-import Title from "@/components/title";
 import ChangeColors from "@/components/changeColors";
 
 export default async function Contactanos() {
@@ -7,7 +6,7 @@ export default async function Contactanos() {
   const lang = (cookieStore.get("lang")?.value || "es") as "es" | "en";
 
   return (
-    <div className="flex flex-col gap-y-20 mt-17 px-4 bg-background text-foreground">
+    <div className="flex flex-col gap-y-20 mt-17 px-4 bg-background text-foreground scroll-m-20">
       <ChangeColors page="contactanos" />
 
       <div className="grid md:grid-cols-2">

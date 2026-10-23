@@ -8,7 +8,7 @@ const title = ({
   return (
     <div>
       <h2 className="font-bold uppercase">{title}</h2>
-      <h1 className="text-3xl md:text-7xl mt-2 font-medium">{subtitle}</h1>
+      <h1 className="text-3xl md:text-6xl mt-2">{subtitle}</h1>
     </div>
   );
 };

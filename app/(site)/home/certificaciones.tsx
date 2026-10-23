@@ -21,7 +21,7 @@ export default async function Certificaciones({
   const data = (await getData("certificaciones", lang)) as Certificaciones[];
 
   return (
-    <div className="flex flex-col gap-y-20 border-t border-black pt-8 mb-40 md:mb-60">
+    <div className="flex flex-col gap-y-12 border-t border-black pt-8 ">
       <Title
         title={lang === "es" ? "Certificaciones" : "Certifications"}
         subtitle={text.text}

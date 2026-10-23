@@ -15,33 +15,33 @@ export default async function Valores({ lang }: { lang: string }) {
         <h1 className="font-bold mb-4">
           {lang === "es" ? "NUESTROS VALORES" : "OUR VALUES"}
         </h1>
-        <div className="flex flex-col gap-y-8">
+        <div className="flex flex-col gap-y-6 md:pr-20">
           {data.slice(0, 2).map((item, index) => (
             <div key={index} className="flex flex-col gap-y-4">
-              <h2 className="text-3xl md:text-5xl font-bold mb-4">
+              <h2 className="text-2xl md:text-4xl font-bold">
                 {index + 1}. {item.title}
               </h2>
               <div>
-                <h3 className="text-2xl md:text-4xl font-medium">
+                <h3 className="text-xl md:text-3xl font-medium">
                   {item.subtitle}
                 </h3>
-                <p className="text-xl md:text-3xl font-medium">{item.text}</p>
+                <p className="text-base md:text-2xl">{item.text}</p>
               </div>
             </div>
           ))}
         </div>
       </div>
-      <div className="md:px-20 md:pt-20 md:pb-60 flex flex-col gap-y-8">
+      <div className="md:px-14 md:pt-20 md:pb-60 flex flex-col gap-y-6">
         {data.slice(2, data.length).map((item, index) => (
           <div key={index} className="flex flex-col gap-y-4">
-            <h2 className="text-3xl md:text-5xl font-bold mb-4">
+            <h2 className="text-2xl md:text-4xl font-bold">
               {index + 3}. {item.title}
             </h2>
             <div>
-              <h3 className="text-2xl md:text-4xl font-medium">
+              <h3 className="text-xl md:text-3xl font-medium">
                 {item.subtitle}
               </h3>
-              <p className="text-xl md:text-3xl font-medium">{item.text}</p>
+              <p className="text-lg md:text-2xl ">{item.text}</p>
             </div>
           </div>
         ))}

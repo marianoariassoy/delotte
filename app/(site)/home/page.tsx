@@ -5,6 +5,7 @@ import Actividades from "./actividades";
 import Datos from "./datos";
 import Certificaciones from "./certificaciones";
 import { getHomeData } from "@/lib/api";
+import Talentos from "../talentos/page";
 
 export default async function Home() {
   const cookieStore = await cookies();
@@ -21,6 +22,7 @@ export default async function Home() {
       <Datos lang={lang} />
       <Empresas lang={lang} />
       <Certificaciones text={data[4]} lang={lang} />
+      <Talentos />
     </section>
   );
 }

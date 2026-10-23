@@ -8,7 +8,7 @@ export default async function Aplicaciones({ lang }: { lang: string }) {
   const data = (await getData("aplicaciones", lang)) as Data[];
 
   return (
-    <div className="border-t border-b border-foreground grid md:grid-cols-2">
+    <div className="border-t border-foreground grid md:grid-cols-2">
       <div className="py-12 pr-4 md:border-r border-foreground">
         <h1 className="font-bold mb-2">
           {lang === "es" ? "APLICACIONES ABIERTAS" : "OPEN APPLICATIONS"}

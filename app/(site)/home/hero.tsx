@@ -18,7 +18,7 @@ const hero = ({ data }: { data: Data }) => {
         preload="metadata"
         poster="/assets/no-video.avif"
       >
-        <source src="/videos/landing-hero-web.mp4" type="video/mp4" />
+        <source src="/videos/landing-hero-h264.mp4" type="video/mp4" />
       </video>
     </div>
   );
