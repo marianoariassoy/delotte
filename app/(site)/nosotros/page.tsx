@@ -20,7 +20,7 @@ export default async function Nosotros() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6  mx-auto pb-20 mt-20">
         <div>
           <Image
-            src="/assets/quienes_somos-1.webp"
+            src="https://marianoarias.soy/works/delotte/assets/quienes_somos-1.webp"
             alt="Quienes somos 1"
             className="aspect-square md:aspect-4/5 object-center object-cover w-full h-full"
             width={1920}
@@ -33,7 +33,7 @@ export default async function Nosotros() {
       </div>
 
       <img
-        src="/assets/quienes_somos-2.webp"
+        src="https://marianoarias.soy/works/delotte/assets/quienes_somos-2.webp"
         alt="Quienes somos 2"
         className="w-full aspect-square md:aspect-auto object-center object-cover"
       />

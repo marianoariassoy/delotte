@@ -29,7 +29,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
 
   return (
     <html lang={initialLang}>
-      <body className={`${satoshi.variable} antialiased `}>
+      <body className={`${satoshi.variable} antialiased`}>
         <main>
           <LanguageProvider initialLang={initialLang}>
             <Header />

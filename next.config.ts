@@ -10,6 +10,12 @@ const nextConfig: NextConfig = {
         port: "",
         pathname: "/works/delotte/images/**",
       },
+      {
+        protocol: "https",
+        hostname: "marianoarias.soy",
+        port: "",
+        pathname: "/works/delotte/assets/**",
+      },
     ],
   },
 };
