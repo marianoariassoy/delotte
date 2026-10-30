@@ -4,12 +4,15 @@ import MisionVision from "./misionvision";
 import Valores from "./valores";
 import Title from "@/components/title";
 import { getHomeData } from "@/lib/api";
+import Columnas from "@/components/columnas";
+import { splitTextInHalf } from "@/lib/utils";
 
 export default async function Nosotros() {
   const cookieStore = await cookies();
   const lang = (cookieStore.get("lang")?.value || "es") as "es" | "en";
   const data = await getHomeData(lang);
 
+  const [parte1, parte2] = splitTextInHalf(data[7].text);
   return (
     <div className="flex flex-col mt-30 px-4 scroll-m-30">
       <Title
@@ -32,10 +35,16 @@ export default async function Nosotros() {
         </div>
       </div>
 
+      <Columnas
+        title={lang === "es" ? "NUESTRA HISTORIA" : "Our History"}
+        textLeft={parte1}
+        textRight={parte2}
+      />
+
       <img
         src="https://marianoarias.soy/works/delotte/assets/quienes_somos-2.webp"
         alt="Quienes somos 2"
-        className="w-full aspect-square md:aspect-auto object-center object-cover"
+        className="w-full aspect-square md:aspect-auto object-center object-cover mt-20"
       />
 
       <MisionVision lang={lang} />
